@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 330 50% 99%;
+    --foreground: 330 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 330 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 330 10% 15%;
+    --primary: 336 83% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 336 60% 90%;
+    --secondary-foreground: 336 83% 35%;
+    --muted: 336 30% 95%;
+    --muted-foreground: 330 10% 45%;
+    --accent: 336 60% 90%;
+    --accent-foreground: 336 83% 35%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 336 30% 88%;
+    --input: 336 30% 88%;
+    --ring: 336 83% 55%;
+    --radius: 0.625rem;
+    --sidebar-background: 330 50% 99%;
+    --sidebar-foreground: 330 10% 15%;
+    --sidebar-primary: 336 83% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 336 60% 90%;
+    --sidebar-accent-foreground: 336 83% 35%;
+    --sidebar-border: 336 30% 88%;
+    --sidebar-ring: 336 83% 55%;
+  }
+
+  .dark {
+    --background: 330 20% 8%;
+    --foreground: 330 20% 95%;
+    --card: 330 20% 10%;
+    --card-foreground: 330 20% 95%;
+    --popover: 330 20% 10%;
+    --popover-foreground: 330 20% 95%;
+    --primary: 336 83% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 336 30% 20%;
+    --secondary-foreground: 336 60% 90%;
+    --muted: 336 20% 18%;
+    --muted-foreground: 330 15% 60%;
+    --accent: 336 30% 20%;
+    --accent-foreground: 336 60% 90%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 336 20% 20%;
+    --input: 336 20% 20%;
+    --ring: 336 83% 60%;
+    --sidebar-background: 330 20% 8%;
+    --sidebar-foreground: 330 20% 95%;
+    --sidebar-primary: 336 83% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 336 30% 20%;
+    --sidebar-accent-foreground: 336 60% 90%;
+    --sidebar-border: 336 20% 20%;
+    --sidebar-ring: 336 83% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+  .font-display {
+    font-family: 'Great Vibes', cursive;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animate-delay-1000 {
+    animation-delay: 1000ms;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-romantic {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--secondary)) 100%);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsl(var(--background) / 0.8);
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px hsl(var(--primary) / 0.25);
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--primary-foreground));
+}
