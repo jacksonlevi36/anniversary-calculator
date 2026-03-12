@@ -172,11 +172,13 @@ Calculated with Anniversary Calculator
                 <CalendarIcon className="w-4 h-4 text-primary" />
                 Anniversary Date
               </Label>
-             <Input
+    <Input 
   type="date"
+  placeholder="mm/dd/yyyy"
   value={date ? format(date, 'yyyy-MM-dd') : ''}
   onChange={(e) => {
-    const selectedDate = e.target.value ? new Date(e.target.value) : undefined;
+    const value = e.target.value;
+    const selectedDate = value ? new Date(value) : undefined;
     setDate(selectedDate);
   }}
   className="w-full h-12 text-lg border-2"
