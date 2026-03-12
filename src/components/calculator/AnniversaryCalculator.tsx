@@ -172,19 +172,19 @@ Calculated with Anniversary Calculator
                 <CalendarIcon className="w-4 h-4 text-primary" />
                 Anniversary Date
               </Label>
-<Input 
+{/* Standard input tag use karein */}
+<input
   type="text"
+  placeholder="MM/DD/YYYY"
   inputMode="numeric"
-  placeholder="YYYY-MM-DD"
-  value={date ? format(date, 'yyyy-MM-dd') : ''}
+  className="w-full h-12 text-lg border-2 p-3 rounded-md"
+  value={date ? format(date, 'MM/dd/yyyy') : ''}
   onChange={(e) => {
     const value = e.target.value;
-    // Sirf wahi value accept karein jo valid format mein ho
+    // Yahan hum manual input handle kar rahe hain
+    // Is logic ko aap apni zaroorat ke mutabiq adjust kar sakte hain
     setDate(value ? new Date(value) : undefined);
   }}
-  className="w-full h-12 text-lg border-2"
-  onFocus={(e) => e.target.type = 'date'}
-  onBlur={(e) => e.target.type = 'text'}
 />
             </div>
           </div>
