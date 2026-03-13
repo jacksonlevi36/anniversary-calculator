@@ -177,9 +177,11 @@ Calculated with Anniversary Calculator
 <Input
   type="text"
   inputMode="numeric"
-  placeholder="MM/DD/YYYY"
+  placeholder="MM / DD / YYYY"
   maxLength={10}
   value={inputValue}
+  onFocus={(e) => e.target.placeholder = ""} // Jab click karein, placeholder gayab
+  onBlur={(e) => e.target.placeholder = "MM / DD / YYYY"} // Jab click hatayein, wapis aa jaye
   onChange={(e) => {
     let val = e.target.value.replace(/\D/g, ""); 
     
