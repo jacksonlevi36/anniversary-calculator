@@ -95,10 +95,10 @@ export default function Contact() {
                         For general inquiries and support
                       </p>
                       <a
-                        href="mailto:hello@anniversarycalculator.com"
+                        href="mailto:anniversarycalculator@gmail.com"
                         className="text-primary hover:underline"
                       >
-                        hello@anniversarycalculator.com
+                        anniversarycalculator@gmail.com
                       </a>
                     </div>
                   </CardContent>
