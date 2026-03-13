@@ -247,7 +247,7 @@ export default function Privacy() {
   </p>
   
   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-    📧 <a href="mailto:privacy@anniversarycalculator.com" className="text-primary hover:underline">privacy@anniversarycalculator.com</a>
+    📧 <a href="mailto:anniversarycalculator@gmail.com" className="text-primary hover:underline">anniversarycalculator@gmail.com</a>
   </p>
 
   <h2 className="text-3xl font-bold text-primary mt-10 mb-6 border-b border-primary/20 pb-2">Consent</h2>
