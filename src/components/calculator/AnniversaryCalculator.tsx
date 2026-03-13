@@ -16,7 +16,9 @@ import confetti from 'canvas-confetti';
 export default function AnniversaryCalculator() {
   const [husbandName, setHusbandName] = useState('');
   const [wifeName, setWifeName] = useState('');
-  const [date, setDate] = useState<Date>();
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState<AnniversaryResult | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
@@ -37,50 +39,53 @@ export default function AnniversaryCalculator() {
       });
     }
   }, [result]);
-  const handleCalculate = () => {
-    if (!date || !husbandName.trim() || !wifeName.trim()) {
-      toast.error('Please fill in all fields');
-      return;
-    }
-
-    setIsCalculating(true);
+const handleCalculate = () => {
+  // Check karein ke teeno fields bhari hui hain
+  if (!day || !month || !year || !husbandName.trim() || !wifeName.trim()) {
+    toast.error('Please fill in all fields');
+    return;
+  }
+  
+  setIsCalculating(true);
+  
+  // Fake delay taake UI smooth lage
+  setTimeout(() => {
+    // Teeno values ko mila kar naya date object banayein
+    const selectedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
     
-    // Simulate calculation delay for animation
-    setTimeout(() => {
-      const calculation = calculateAnniversary(date);
-      setResult(calculation);
-      setIsCalculating(false);
-      toast.success('Anniversary calculated successfully!');
-    }, 800);
-  };
-
-  const handleReset = () => {
-    setHusbandName('');
-    setWifeName('');
-    setDate(undefined);
-    setInputValue('');
-    setResult(null);
-    toast.info('Form reset successfully');
-  };
-
-  const handleCopyResult = () => {
-    if (!result || !date) return;
+    // Calculation function ko call karein
+    const calculation = calculateAnniversary(selectedDate);
     
-    const text = `💕 Anniversary Calculation for ${husbandName} & ${wifeName} 💕
+    setResult(calculation);
+    setIsCalculating(false);
+  }, 800);
+};
 
-📅 Anniversary Date: ${formatDate(date)}
-⏰ Time Together: ${result.years} years, ${result.months} months, ${result.days} days
-📈 Total Days: ${result.totalDays.toLocaleString()} days
-🎉 Next Anniversary: In ${result.nextAnniversary.years} years, ${result.nextAnniversary.months} months, ${result.nextAnniversary.days} days
+const handleReset = () => {
+  setHusbandName('');
+  setWifeName('');
+  setDay('');      // Nayi state reset karein
+  setMonth('');    // Nayi state reset karein
+  setYear('');     // Nayi state reset karein
+  setResult(null);
+  toast.info('Form reset successfully');
+};
 
+const handleCopyResult = () => {
+  if (!result || !day || !month || !year) return;
+
+  const dateString = `${month}/${day}/${year}`;
+  const text = `Anniversary Calculation for ${husbandName} & ${wifeName}
+Anniversary Date: ${dateString}
+Time Together: ${result.years} years, ${result.months} months, ${result.days} days
+Total Days: ${result.totalDays.toLocaleString()} days
+Next Anniversary: In ${result.nextAnniversary.years} years, ${result.nextAnniversary.months} months, ${result.nextAnniversary.days} days
 ${getAnniversaryMessage(result.years)}
+Calculated with Anniversary Calculator`;
 
-Calculated with Anniversary Calculator
-    `.trim();
-    
-    navigator.clipboard.writeText(text);
-    toast.success('Result copied to clipboard!');
-  };
+  navigator.clipboard.writeText(text);
+  toast.success('Result copied to clipboard!');
+};
 
   const handleShare = async () => {
     if (!result) return;
@@ -174,39 +179,25 @@ Calculated with Anniversary Calculator
                 <CalendarIcon className="w-4 h-4 text-primary" />
                 Anniversary Date
               </Label>
-<Input
-  type="text"
-  inputMode="numeric"
-  placeholder="MM / DD / YYYY"
-  maxLength={10}
-  value={inputValue}
-  onFocus={(e) => e.target.placeholder = ""} // Jab click karein, placeholder gayab
-  onBlur={(e) => e.target.placeholder = "MM / DD / YYYY"} // Jab click hatayein, wapis aa jaye
-  onChange={(e) => {
-    let val = e.target.value.replace(/\D/g, ""); 
-    
-    if (val.length > 2 && val.length <= 4) {
-      val = val.slice(0, 2) + "/" + val.slice(2);
-    } else if (val.length > 4) {
-      val = val.slice(0, 2) + "/" + val.slice(2, 4) + "/" + val.slice(4, 8);
-    }
-    
-    setInputValue(val);
-
-    if (val.length === 10) {
-      const parts = val.split('/');
-      const month = parseInt(parts[0], 10);
-      const day = parseInt(parts[1], 10);
-      const year = parseInt(parts[2], 10);
-      
-      const parsedDate = new Date(year, month - 1, day);
-      if (!isNaN(parsedDate.getTime())) {
-        setDate(parsedDate);
-      }
-    }
-  }}
-  className="h-12 text-lg border-2 focus:border-primary transition-colors"
-/>
+<div className="flex gap-2">
+  <select value={month} onChange={(e) => setMonth(e.target.value)} className="w-1/3 h-12 p-2 border-2 rounded">
+    <option value="">Month</option>
+    {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map((m, i) => (
+      <option key={m} value={i + 1}>{m}</option>
+    ))}
+  </select>
+  <select value={day} onChange={(e) => setDay(e.target.value)} className="w-1/3 h-12 p-2 border-2 rounded">
+    <option value="">Day</option>
+    {[...Array(31)].map((_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
+  </select>
+  <input 
+    type="number" 
+    placeholder="Year" 
+    value={year} 
+    onChange={(e) => setYear(e.target.value)} 
+    className="w-1/3 h-12 p-2 border-2 rounded" 
+  />
+</div>
             </div>
           </div>
 
@@ -251,8 +242,8 @@ Calculated with Anniversary Calculator
                   {husbandName} <span className="text-primary">&</span> {wifeName}
                 </h3>
                 <p className="text-muted-foreground">
-                  Celebrating their love since {date && formatDate(date)}
-                </p>
+                  Celebrating their love since {day && month && year ? `${month}/${day}/${year}` : ''}
+</p>
               </div>
 
               {/* Time Together Stats */}
