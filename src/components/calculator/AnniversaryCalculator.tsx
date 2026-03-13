@@ -17,6 +17,7 @@ export default function AnniversaryCalculator() {
   const [husbandName, setHusbandName] = useState('');
   const [wifeName, setWifeName] = useState('');
   const [date, setDate] = useState<Date>();
+  const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState<AnniversaryResult | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -57,6 +58,7 @@ export default function AnniversaryCalculator() {
     setHusbandName('');
     setWifeName('');
     setDate(undefined);
+    setInputValue('');
     setResult(null);
     toast.info('Form reset successfully');
   };
@@ -177,29 +179,31 @@ Calculated with Anniversary Calculator
   inputMode="numeric"
   placeholder="MM/DD/YYYY"
   maxLength={10}
-  value={date ? format(date, 'MM/dd/yyyy') : ''}
+  value={inputValue}
   onChange={(e) => {
-    let val = e.target.value.replace(/\D/g, ""); // Sirf numbers rakho
+    let val = e.target.value.replace(/\D/g, ""); 
+    
     if (val.length > 2 && val.length <= 4) {
       val = val.slice(0, 2) + "/" + val.slice(2);
     } else if (val.length > 4) {
-      val = val.slice(0, 2) + "/" + val.slice(2, 4) + "/" + val.slice(4, 10);
+      val = val.slice(0, 2) + "/" + val.slice(2, 4) + "/" + val.slice(4, 8);
     }
     
-    // UI update karne ke liye value set karein
-    e.target.value = val;
+    setInputValue(val);
 
-    // Agar date mukammal hai (10 characters), toh state update karein
     if (val.length === 10) {
-      const parsedDate = new Date(val);
+      const parts = val.split('/');
+      const month = parseInt(parts[0], 10);
+      const day = parseInt(parts[1], 10);
+      const year = parseInt(parts[2], 10);
+      
+      const parsedDate = new Date(year, month - 1, day);
       if (!isNaN(parsedDate.getTime())) {
         setDate(parsedDate);
       }
-    } else if (val.length === 0) {
-      setDate(undefined);
     }
   }}
-  className="w-full h-12 text-lg border-2"
+  className="h-12 text-lg border-2 focus:border-primary transition-colors"
 />
             </div>
           </div>
