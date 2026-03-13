@@ -172,12 +172,32 @@ Calculated with Anniversary Calculator
                 <CalendarIcon className="w-4 h-4 text-primary" />
                 Anniversary Date
               </Label>
-             <Input
-  type="date"
-  value={date ? format(date, 'yyyy-MM-dd') : ''}
+<Input
+  type="text"
+  inputMode="numeric"
+  placeholder="MM/DD/YYYY"
+  maxLength={10}
+  value={date ? format(date, 'MM/dd/yyyy') : ''}
   onChange={(e) => {
-    const selectedDate = e.target.value ? new Date(e.target.value) : undefined;
-    setDate(selectedDate);
+    let val = e.target.value.replace(/\D/g, ""); // Sirf numbers rakho
+    if (val.length > 2 && val.length <= 4) {
+      val = val.slice(0, 2) + "/" + val.slice(2);
+    } else if (val.length > 4) {
+      val = val.slice(0, 2) + "/" + val.slice(2, 4) + "/" + val.slice(4, 10);
+    }
+    
+    // UI update karne ke liye value set karein
+    e.target.value = val;
+
+    // Agar date mukammal hai (10 characters), toh state update karein
+    if (val.length === 10) {
+      const parsedDate = new Date(val);
+      if (!isNaN(parsedDate.getTime())) {
+        setDate(parsedDate);
+      }
+    } else if (val.length === 0) {
+      setDate(undefined);
+    }
   }}
   className="w-full h-12 text-lg border-2"
 />
