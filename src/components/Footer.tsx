@@ -21,10 +21,10 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/anniversarycalculator' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/annicalculator' },
-  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/anniversarycalculator' },
-  { name: 'Email', icon: Mail, href: 'mailto:hello@anniversarycalculator.com' },
+  { name: 'Facebook', icon: Facebook, href: 'https://www.anniversarycalc.com/' },
+  { name: 'Twitter', icon: Twitter, href: 'https://www.anniversarycalc.com/' },
+  { name: 'Instagram', icon: Instagram, href: 'https://www.anniversarycalc.com/' },
+  { name: 'Email', icon: Mail, href: 'mailto:anniversarycalculator@gmail.com' },
 ];
 
 export default function Footer() {
