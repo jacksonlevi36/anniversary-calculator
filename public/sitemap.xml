@@ -1,8 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://Anniversarycalc.com/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://www.anniversarycalc.com/</loc>
+    <lastmod>2026-03-14</lastmod>
     <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.anniversarycalc.com/blog</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.anniversarycalc.com/blog/how-to-calculate-anniversary-date-accurately</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/blog/wedding-anniversary-milestones-by-year</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/blog/anniversary-gift-ideas-by-year</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/blog/how-many-days-since-my-marriage</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/blog/anniversary-celebration-ideas</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.anniversarycalc.com/about</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/contact</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.anniversarycalc.com/privacy</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/terms</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.anniversarycalc.com/disclaimer</loc>
+    <lastmod>2026-03-14</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>
